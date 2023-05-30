@@ -8,6 +8,8 @@ import Regeister from "../Layouts/Pages/Regeister/Regeister";
 import UserDashboard from "../Layouts/UserDashboard/UserDashboard";
 import UserHome from "../Layouts/Pages/UserHome/UserHome";
 import MyOrders from "../Layouts/Pages/MyOrders/MyOrders";
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
+import AllUsers from "../Layouts/Pages/AllUsers/AllUsers";
 
 
 export const routers = createBrowserRouter([
@@ -39,7 +41,7 @@ export const routers = createBrowserRouter([
     },
     {
         path:'/userDashboard',
-        element:<UserDashboard/>,
+        element:<PrivetRoute><UserDashboard/></PrivetRoute>,
         children:[
             {
                 path:'/userDashboard',
@@ -48,6 +50,10 @@ export const routers = createBrowserRouter([
             {
                 path:'/userDashboard/myOrders',
                 element:<MyOrders/>
+            },
+            {
+                path:'/userDashboard/allUsers',
+                element:<AllUsers/>
             }
         ]
     }

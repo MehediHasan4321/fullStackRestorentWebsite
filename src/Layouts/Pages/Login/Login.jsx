@@ -1,15 +1,18 @@
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import loginBgImg from '../../../assets/others/authentication.png'
 import loginImg from '../../../assets/others/authentication2.png'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa'
 import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import ThirdPartyLogin from '../../ShareCompo/ThirdPartyLoging/ThirdPartyLogin';
 const Login = () => {
-    const [isDisable,setIsDisable] = useState(true)
+    const [isDisable, setIsDisable] = useState(true)
     const capchaRef = useRef(null)
-    const {logInWithEmailPassword} = useContext(AuthContext) 
+    const { logInWithEmailPassword } = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location?.state?.from?.pathname || '/'
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
@@ -19,20 +22,21 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value
-       logInWithEmailPassword(email,password)
-       .then(()=>{
-        alert('Login Successfull')
-       })
-       .catch(err=>{
-        console.log(err)
-       })
+        logInWithEmailPassword(email, password)
+            .then(() => {
+                alert('Login Successfull')
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     const handleValided = () => {
-        const value =(capchaRef.current.value)
-        if(validateCaptcha(value)){
+        const value = (capchaRef.current.value)
+        if (validateCaptcha(value)) {
             setIsDisable(false)
-        }else{
+        } else {
             setIsDisable(true)
         }
     }
@@ -67,7 +71,7 @@ const Login = () => {
                     </div>
                     <div className="mt-3 w-full">
                         <p className='text-[#D1A054] text-center'><Link to={'/regeister'}>New Here? Create a New Account</Link></p>
-                        <ThirdPartyLogin/>
+                        <ThirdPartyLogin />
                     </div>
                 </form>
             </div>
