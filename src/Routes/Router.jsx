@@ -10,6 +10,7 @@ import UserHome from "../Layouts/Pages/UserHome/UserHome";
 import MyOrders from "../Layouts/Pages/MyOrders/MyOrders";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import AllUsers from "../Layouts/Pages/AllUsers/AllUsers";
+import AdminRoute from "../PrivetRoute/AdminRoute";
 
 
 export const routers = createBrowserRouter([
@@ -53,7 +54,7 @@ export const routers = createBrowserRouter([
             },
             {
                 path:'/userDashboard/allUsers',
-                element:<AllUsers/>
+                element:<AdminRoute><AllUsers/></AdminRoute>
             }
         ]
     }

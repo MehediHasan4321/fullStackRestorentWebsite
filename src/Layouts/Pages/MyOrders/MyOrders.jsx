@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 
 const MyOrders = () => {
     const [orders,refetch] = useCart()
+    //console.log(orders)
     const { user } = useContext(AuthContext)
     const handleDeleteOrder = id => {
         Swal.fire({
@@ -60,7 +61,7 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) => <tr key={order._id}>
+                            orders?.map((order, index) => <tr key={order._id}>
                                 <th>{index + 1}</th>
                                 <td>
                                     <div className="flex items-center space-x-3">

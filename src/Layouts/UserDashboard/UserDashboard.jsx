@@ -1,9 +1,13 @@
 import React from 'react';
 import { FaAccusoft, FaBars, FaBookMedical, FaCalendarAlt, FaFileContract, FaHome, FaShoppingBag, FaShoppingCart, FaUsers, FaWallet } from 'react-icons/fa';
 import { Link, Outlet } from 'react-router-dom';
+import useIsAdmin from '../../Hooks/useIsAdmin';
+import useAuth from '../../Hooks/useAuth';
+
 
 const UserDashboard = () => {
-    const isAdmin = true
+    const {logOut} = useAuth()
+    const [isAdmin] = useIsAdmin()
     return (
         <div className="grid grid-cols-8">
             <div className=' bg-[#D1A054] h-screen col-span-1 sticky top-0'>
@@ -36,7 +40,7 @@ const UserDashboard = () => {
                     <Link to={'/ourMenu'}><p className='flex items-center gap-3 mt-6 text-lg cursor-pointer'><FaBars /> Menu</p></Link>
                     <Link><p className='flex items-center gap-3 mt-6  text-lg cursor-pointer'><FaShoppingBag />Shop</p></Link>
                     <Link><p className='flex items-center gap-3 mt-6  text-lg cursor-pointer'><FaFileContract />Contact</p></Link>
-                    <button className='mt-6  text-lg cursor-pointer bg-amber-300 px-4 py-2 rounded-md'>Sign  Out</button>
+                    <button onClick={()=>logOut()} className='mt-6  text-lg cursor-pointer bg-amber-300 px-4 py-2 rounded-md'>Sign  Out</button>
                 </div>
             </div>
             <div className='pl-10 col-span-6'>

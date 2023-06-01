@@ -3,12 +3,13 @@ import { FaTrash, FaUsers } from 'react-icons/fa';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import { useQuery } from '@tanstack/react-query';
 import { Toaster, toast } from 'react-hot-toast';
+import useAexiosSerure from '../../../Hooks/useAexiosSerure';
 
 const AllUsers = () => {
-
+    const [axiosSerure] = useAexiosSerure()
     const { data: allUser = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch('http://localhost:5000/users')
-        return res.json()
+        const res = await axiosSerure.get('/users')
+        return res.data
     })
 
     const handleAdminRole = user => {
