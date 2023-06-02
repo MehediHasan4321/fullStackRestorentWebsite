@@ -2,7 +2,7 @@ import useAuth from '../Hooks/useAuth';
 import { Navigate, useLocation } from 'react-router-dom';
 import useIsAdmin from '../Hooks/useIsAdmin';
 
-const AdminRoute = () => {
+const AdminRoute = ({children}) => {
     const {user,isLoading} = useAuth()
     const [isAdmin, isAdminLoading] = useIsAdmin()
     const from = useLocation()

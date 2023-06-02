@@ -5,11 +5,14 @@ import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const MyOrders = () => {
     const [orders,refetch] = useCart()
-    //console.log(orders)
     const { user } = useContext(AuthContext)
+    const payAblePrice = orders.reduce((price,item)=>{
+        return price + item.price
+    },0)
     const handleDeleteOrder = id => {
         Swal.fire({
             title: 'Are you sure?',
@@ -44,6 +47,11 @@ const MyOrders = () => {
             <div className='w-fll'>
                 <SectionTitle subTitle={'My Cart'} title={'WANNA ADD MORE?'} cl />
 
+            </div>
+            <div className='flex justify-between items-center my-4 text-2xl mr-5'>
+                <h1>Total Order {orders.length}</h1> 
+                <h1>Total Price {payAblePrice}</h1>
+                <Link to={'/userDashboard/payment'} className='bg-amber-400 px-6 py-1 rounded-md text-sm'><button>Pay</button></Link>
             </div>
             <div className="overflow-x-auto w-full mb-12">
                 <table className="table w-full">

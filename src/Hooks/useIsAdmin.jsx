@@ -10,7 +10,6 @@ const useIsAdmin = () => {
         queryKey: ['isAdmin', user?.email],
         queryFn: async () => {
             const res = await axiosSerure(`/user/admin/${user?.email}`)
-            console.log(res)
             return res.data.admin
         }
     })

@@ -11,50 +11,56 @@ import MyOrders from "../Layouts/Pages/MyOrders/MyOrders";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import AllUsers from "../Layouts/Pages/AllUsers/AllUsers";
 import AdminRoute from "../PrivetRoute/AdminRoute";
+import Payments from "../Layouts/Pages/Payments/Payments";
 
 
 export const routers = createBrowserRouter([
     {
-        path:'/',
-        element:<Main/>,
-        children:[
+        path: '/',
+        element: <Main />,
+        children: [
             {
-                path:'/',
-                element:<LandingPage/>
+                path: '/',
+                element: <LandingPage />
             },
             {
-                path:'/ourMenu',
-                element:<OurMenus/>
+                path: '/ourMenu',
+                element: <OurMenus />
             },
             {
-                path:'/order/:foodCategory',
-                element:<Orders/>
+                path: '/order/:foodCategory',
+                element: <Orders />
             },
             {
-                path:'/login',
-                element:<Login/>
+                path: '/login',
+                element: <Login />
             },
             {
-                path:'/regeister',
-                element:<Regeister/>
-            }
+                path: '/regeister',
+                element: <Regeister />
+            },
+
         ]
     },
     {
-        path:'/userDashboard',
-        element:<PrivetRoute><UserDashboard/></PrivetRoute>,
-        children:[
+        path: '/userDashboard',
+        element: <PrivetRoute><UserDashboard /></PrivetRoute>,
+        children: [
             {
-                path:'/userDashboard',
-                element:<UserHome/>
+                path: '/userDashboard',
+                element: <UserHome />
             },
             {
-                path:'/userDashboard/myOrders',
-                element:<MyOrders/>
+                path: '/userDashboard/myOrders',
+                element: <MyOrders />
             },
             {
-                path:'/userDashboard/allUsers',
-                element:<AdminRoute><AllUsers/></AdminRoute>
+                path: '/userDashboard/allUsers',
+                element: <AdminRoute><AllUsers /></AdminRoute>
+            },
+            {
+                path: '/userDashboard/payment',
+                element: <Payments />
             }
         ]
     }

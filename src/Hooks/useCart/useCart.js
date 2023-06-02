@@ -5,17 +5,17 @@ import useAexiosSerure from '../useAexiosSerure'
 
 
 const useCart = () => {
-    const { user,isLoading } = useContext(AuthContext)
+    const { user, isLoading } = useContext(AuthContext)
     const [axiosSerure] = useAexiosSerure()
 
     const { refetch, data: orders = [] } = useQuery({
         queryKey: ['orders', user?.email],
-        enabled:isLoading,
+        enabled: !isLoading,
         queryFn: async () => {
             const res = await axiosSerure(`/orders?email=${user?.email}`)
             return res.data
         }
-        
+
     })
 
     return [orders, refetch]
