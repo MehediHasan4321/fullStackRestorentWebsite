@@ -17,8 +17,6 @@ const PopularMenu = () => {
         autoplay: true,
         speed: 4000,
         autoplaySpeed: 4000,
-       
-
     };
     return (
         <div className='container mx-auto my-12 '>
