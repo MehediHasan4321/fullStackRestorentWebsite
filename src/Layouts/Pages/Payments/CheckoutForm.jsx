@@ -70,9 +70,12 @@ const CheckoutForm = ({ price, orders }) => {
                 price,
                 quantity: orders.length,
                 itemName: orders.map(item => item.name),
-                itemId: orders.map(item => item._id)
+                orderId: orders.map(item => item._id),
+                foodId: orders.map(item => item.foodId),
+                date: new Date(),
+                orderStatus: 'paiding'
             }
-
+            console.log(payment)
             axiosSerure.post('/payment', payment)
                 .then(res => {
                     console.log(res.data)
@@ -102,7 +105,7 @@ const CheckoutForm = ({ price, orders }) => {
                         },
                     }}
                 />
-                <button className='btn btn-outline btn-primary btn-sm mt-4' type="submit" disabled={!stripe || !clientSecrect || processing}>
+                <button className='btn btn-outline btn-primary btn-sm mt-4' type="submit" disabled={!stripe || !clientSecrect || processing ||!price}>
                     {processing ? 'Processing ...' : `Pay ${price}`}
                 </button>
             </form>
